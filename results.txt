@@ -1,0 +1,18 @@
+Surviving party members:
+Ethan
+Max
+Sofie
+Theo
+Mom
+Number of rooms cleared:
+0
+Gold pieces remaining:
+4
+Remaining treasure in inventory:
+Number of explored spaces:
+1
+Number of monsters defeated:
+0
+Number of turns elapsed:
+4
+You made it!

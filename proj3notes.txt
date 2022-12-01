@@ -1,0 +1,110 @@
+Wrapping up:
+* go back through fight function, something not working properly
+* test my read monsters function and read riddles function especially
+* merchant menu and switch statements for the take turn seem to work
+* writing to the file at the end also seemed to work
+* 
+
+
+
+
+- Left off compiling Dungeon
+- Run program / build main / test dungeon functions
+- go back to previous classes and ensure functions are correct
+    Ex: making sure that in setFullness, fullness can't drop below 0
+    ^small details like this
+- Comment throughout member functions, explain implementation, and make sure no holes in logic
+- add time delays in main to make things flow better
+- if there is time, add some cout art, like the dungeon title that one kid had
+- make sure to add death statement after death by hunger
+
+
+To do:
+* update getters / setters / test them to ensure the values update
+* change npc function 
+* add vector of vectors of NPC riddles (data member)
+* add a readNPC function to read the file to initialize the data member
+* add a removeRiddle function to remove used riddles
+* finish take turn function 
+    door case
+    game end case / give up;
+
+* create game end function which checks game is not over (condition of game)
+    will likely return boolean
+        false if gave is not over
+        true if game has ended
+    the function should return boolean, and in the game driver, I will have a variable holding its value
+        - allows me to check other game ending conditions like the hunger that may not be displayed
+        - will separate the printing of end game stats from the actual end game check
+* make sure to update sorcerers anger in take turn function (think it updates when player moves);
+* finish Dungeon constructor
+* add a check for death by hunger in take turn, or make it its own function
+* current thought process on interaction between game end/death by hunger and take turn
+    in the driver of the game, I think I will have take turn running on some sort of loop
+    and in the loop I can have a check for the game ending conditions and death by hunger
+    - could maybe implement death by hunger as a checkFullness function in travelingParty
+    - dependending on return of checkFullness, call takeTurn() and then checkfullness once again
+    - and if fullness still 0, removePlayer, and if the player is at index 0 (the actual player)
+    - end game
+
+    ex:
+        do 
+        {
+            takeTurn();
+
+            if(player fullness == 0)
+            {
+                takeTurn()
+                if(playerfullness == 0)
+                {
+                    game_end = true
+                }
+            }
+
+        } while(gameEnd() == false)
+
+
+- need to figure out why setters are misfiring when being accessed through getInventory() function
+- try passing by reference on the getters which access objects of other classes (suggested in ed)
+
+
+create a game end function
+- game end will likely entail some boolean condition
+- thought process is that in the game driver
+- I will be checking for the game end at the start of the program
+- and if the game end returns true meaning the game will end
+- end the game
+- for the instances where the player's fullness drops to 0 and they have 1 turn to restore health or the game ends
+- use a do while loop which runs while the player's fullness is 0
+- or somehow use an if conditional checking if player fullness is 0
+- and then call take turn function
+- if after the take turn function, the fullness of the player is still 0
+- remove the player
+^^^ this makes some sense
+
+Update NPC function
+- read NPC puzzles only once and store in a data member similar to monsters_
+- have remove puzzle function like removeMonsters
+- also create door puzzle function for opening a door with no key
+
+
+For game ending when players fullness drops
+- the fullness drop of a player should only occur at the end of a turn 
+- thus it is my thought that I can create a function which checks the fullness
+- and within the function
+- I can call take turn once before the game ends
+- if(fullness == 0)
+{
+    cout << blah blah blah
+    take turn()
+}
+if fullness == 0 & game end
+{
+    end;
+}
+
+something like this;
+
+- Make sure I include game end function or variable in misfortune functions (specifically misfortune key) 
+- or anywhere in which players can die or be lost to make sure that the party size is not 1; (must be at least 2 players alive to win)
+- and update sorcerer's anger when I move;
